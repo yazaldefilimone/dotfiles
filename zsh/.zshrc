@@ -173,6 +173,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$PATH:~/.config/yarn/global"
+export PATH="$(yarn global bin):$PATH"
 
 # export PATH="$HOME/.cargo/bin:$PATH"/
 # eval "$(starship init zsh)"e
@@ -184,8 +186,8 @@ export PATH=$PATH:/zig/zig
 alias  vim=nvim
 
 # bun completions
-[ -s "/home/yazaldefilimone/.bun/_bun" ] && source "/home/yazaldefilimone/.bun/_bun"
+# [ -s "/home/yazaldefilimone/.bun/_bun" ] && source "/home/yazaldefilimone/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#export BUN_INSTALL="$HOME/.bun"
+#export PATH="$BUN_INSTALL/bin:$PATH"
