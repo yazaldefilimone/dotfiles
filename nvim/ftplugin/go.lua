@@ -4,32 +4,28 @@ if not status_ok then
 end
 
 local opts = {
-  mode = "n", -- NORMAL mode
+  mode = "n",     -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  nowait = true,  -- use `nowait` when creating keymaps
 }
 local mappings = {
+  l = {
+    f = { "<cmd>GoFmt<cr>", "Format (GoFmt)" },
+  },
   g = {
     name = "+Go",
-    b = { "<cmd>GoBuild<cr>", "Build" },
-    i = { "<cmd>GoInstall<cr>", "Install" },
-    t = { "<cmd>GoTest<cr>", "Test" },
-    r = { "<cmd>GoRun<cr>", "Run" },
-    -- D = { "<cmd>GoDebugStart<cr>", "Debug (Delve)" }, -- brew install delve
-    d = { "<cmd>GoDef<cr>", "Symbol/Declaration" },
-    -- B = { "<cmd>GoDoc<cr>", "Documentation" },
-    p = { "<cmd>GoImport<cr>", "Import Package" },
-    -- P = { "<cmd>GoDrop<cr>", "Remove Package" },
-    n = { "<cmd>GoRename<cr>", "Rename" },
-    c = { "<cmd>GoCoverage<cr>", "Test Coverage" },
-    -- a = { "<cmd>GoAddTags<cr>", "Add Tags" },
-    -- A = { "<cmd>GoRemoveTags<cr>", "Remove Tags" },
-    l = { "<cmd>GoLint<cr>", "Lint" },
-    v = { "<cmd>GoVet<cr>", "Catch Static Errors" },
-    -- e = { "<cmd>GoErrCheck<cr>", "Check Errors" },
+    s = {
+      name = "+Stuct",
+      j = { "<cmd> GoTagAdd json <CR>", "Add json tag" },
+      y = { "<cmd> GoTagAdd yaml <CR>", "Add yaml tag" },
+      J = { "<cmd> GoTagRm json <CR>", "Remove json tag" },
+      Y = { "<cmd> GoTagRm yaml <CR>", "Remove yaml tag" },
+    },
+    t = { "<cmd>GoMod tidy<cr>", "go mod tidy" },
+    e = { "<cmd>GoIfErr<cr>", "Generate if err" },
   },
 }
 
