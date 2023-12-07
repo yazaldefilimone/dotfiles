@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Get the list of modified or untracked files
+modified_files=$(git status -s | awk ' {print $2}')
+
+# Check if there are any modifications
+if [ -z "$modified_files" ]; then
+    echo "No changes found."
+else
+    # Iterate over each modified or untracked file and commit with the specified message
+    IFS=$'\n' # Set Internal Field Separator to newline to handle filenames with spaces
+    for file in $modified_files; do
+        git add "$file"
+        git commit -m "*"
+##        git commit --quiet --status --message="*"
+
+    done
+
+    # Display the total number of changes
+    num_changes=$(echo "$modified_files" | wc -l)
+    echo "$num_changes changes committed."
+fi
