@@ -20,3 +20,4 @@ else
     num_changes=$(echo "$modified_files" | wc -l)
     echo "$num_changes changes committed."
 fi
+
