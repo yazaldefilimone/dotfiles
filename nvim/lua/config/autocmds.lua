@@ -9,11 +9,11 @@ local colors = {
 api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
 --- Remove all trailing whitespace on save
--- local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
--- api.nvim_create_autocmd("BufWritePre", {
---   command = [[:%s/\s\+$//e]],
---   group = TrimWhiteSpaceGrp,
--- })
+local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
+api.nvim_create_autocmd("BufWritePre", {
+  command = [[:%s/\s\+$//e]],
+  group = TrimWhiteSpaceGrp,
+})
 
 -- wrap words "softly" (no carriage return) in mail buffer
 api.nvim_create_autocmd("Filetype", {
@@ -82,20 +82,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-
+-- change the background color of floating windows and borders.
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
-    -- change the background color of floating windows and borders.
     vim.cmd('highlight NormalFloat guibg=none guifg=none')
     vim.cmd('highlight FloatBorder guifg=' .. colors.fg .. ' guibg=none')
     vim.cmd('highlight NormalNC guibg=none guifg=none')
+  end,
+})
 
-    -- change neotree background colors
-    -- Default: NeoTreeNormal  xxx ctermfg=223 ctermbg=232 guifg=#d4be98 guibg=#141617
-    -- vim.cmd('highlight NeoTreeNormal guibg=#252e33 guifg=none')
-    -- vim.cmd('highlight NeoTreeFloatNormal guifg=none guibg=none')
-    -- vim.cmd('highlight NeoTreeFloatBorder gui=none guifg=' .. colors.fg .. ' guibg=none')
-    -- vim.cmd('highlight NeoTreeEndOfBuffer guibg=#252e33') -- 1d2021
+-- change neotree background colors
+-- Default: NeoTreeNormal  xxx ctermfg=223 ctermbg=232 guifg=#d4be98 guibg=#141617
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    vim.cmd('highlight NeoTreeNormal guibg=#1d2021')
+    vim.cmd('highlight NeoTreeFloatNormal guifg=#1d2021 guibg=#141617')
+    vim.cmd('highlight NeoTreeFloatBorder guifg=#958272 guibg=#1d2021')
+    vim.cmd('highlight NeoTreeEndOfBuffer guibg=#1d2021') -- 1d2021
   end,
 })
 
@@ -125,38 +128,3 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- resize neovim split when terminal is resized
 vim.api.nvim_command('autocmd VimResized * wincmd =')
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "kanagawa",
-  callback = function()
-    if vim.o.background == "light" then
-      vim.fn.system("kitty +kitten themes Kanagawa_light")
-    elseif vim.o.background == "dark" then
-      vim.fn.system("kitty +kitten themes Kanagawa_dragon")
-    else
-      vim.fn.system("kitty +kitten themes Kanagawa")
-    end
-  end,
-})
-
-
---fix terraform and hcl comment string
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("FixTerraformCommentString", { clear = true }),
-  callback = function(ev)
-    vim.bo[ev.buf].commentstring = "# %s"
-  end,
-  pattern = { "terraform", "hcl" },
-})
-
--- vim.api.nvim_create_autocmd({ "OptionSet" }, {
---   pattern = { "background" },
---   callback = function(ev)
---     if vim.o.background == 'dark' then
---       vim.cmd("colorscheme gruvbox-material")
---     else
---       vim.cmd("colorscheme gruvbox-material")
---     end
---     vim.cmd("mode")
---   end
--- })
