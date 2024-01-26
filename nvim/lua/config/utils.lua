@@ -105,41 +105,4 @@ M.has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
-M.toggle_inlay_hints = function()
-  -- h = { "<cmd>lua vim.lsp.inlay_hint(0, true)<cr>", "Enable Inlay Hints" },
-  -- H = { "<cmd>lua vim.lsp.inlay_hint(0, false)<cr>", "Disable Inlay Hints" },
-
-  if vim.b.inlay_hints then
-    vim.lsp.inlay_hint(0, false)
-    vim.b.inlay_hints = false
-  else
-    vim.lsp.inlay_hint(0, true)
-    vim.b.inlay_hints = true
-  end
-end
-
-M.toggle_set_color_column = function()
-  if vim.wo.colorcolumn == "" then
-    vim.wo.colorcolumn = "80"
-  else
-    vim.wo.colorcolumn = ""
-  end
-end
-
-M.toggle_cursor_line = function()
-  if vim.wo.cursorline then
-    vim.wo.cursorline = false
-  else
-    vim.wo.cursorline = true
-  end
-end
-
-M.change_background = function()
-  if vim.o.background == "dark" then
-    vim.o.background = "light"
-  else
-    vim.o.background = "dark"
-  end
-end
-
 return M
