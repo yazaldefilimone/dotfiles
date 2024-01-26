@@ -6,28 +6,15 @@ return {
   c = { ":bd<CR>", "Close Buffer" },
   h = { ":nohlsearch<CR>", "No Highlight" },
   p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
-  f = { "<cmd>lua require('config.utils').telescope_git_or_file()<CR>", "Find Files (Root)" },
+  f = { "<cmd>lua require('config.utils').telescope_git_or_file()<CR>", "Find Files" },
   v = "Go to definition in a split",
   a = "Swap next param",
   A = "Swap previous param",
   U = { ":UndotreeToggle<CR>", "Toggle UndoTree" },
-  o = { ":Telescope buffers<CR>", "Open Buffer" },
-  u = {
-    name = "UI",
-    c = { "<cmd>lua require('config.utils').toggle_set_color_column()<CR>", "Toggle Color Line" },
-    l = { "<cmd>lua require('config.utils').toggle_cursor_line()<CR>", "Toggle Cursor Line" },
-    b = { "<cmd>lua require('config.utils').change_background()<CR>", "Toggle Background" },
+  m = {
+    name = "Marks",
+    m = { "<cmd>Telescope marks<cr>", "Marks" },
   },
-  i = {
-    name = "Sessions",
-    s    = { "<cmd>lua require('persistence').load()<cr>", "Load Session" },
-    l    = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
-    d    = { "<cmd>lua require('persistence').stop()<cr>", "Stop Persistence" },
-  },
-  -- m = {
-  --   name = "Marks",
-  --   m = { "<cmd>Telescope marks<cr>", "Marks" },
-  -- },
   r = {
     name = "Replace",
     r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
@@ -36,30 +23,30 @@ return {
   },
   b = {
     name = "Buffers",
-    -- j = { "<cmd>BufferLinePick<cr>", "Jump" },
+    j = { "<cmd>BufferLinePick<cr>", "Jump" },
     f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-    -- b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-    -- n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+    b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+    n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
     W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
-    -- e = {
-    --   "<cmd>BufferLinePickClose<cr>",
-    --   "Pick which buffer to close",
-    -- },
-    -- h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    -- l = {
-    --   "<cmd>BufferLineCloseRight<cr>",
-    --   "Close all to the right",
-    -- },
-    -- D = {
-    --   "<cmd>BufferLineSortByDirectory<cr>",
-    --   "Sort by directory",
-    -- },
-    -- L = {
-    --   "<cmd>BufferLineSortByExtension<cr>",
-    --   "Sort by language",
-    -- },
-    -- p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
-    -- P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
+    e = {
+      "<cmd>BufferLinePickClose<cr>",
+      "Pick which buffer to close",
+    },
+    h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+    l = {
+      "<cmd>BufferLineCloseRight<cr>",
+      "Close all to the right",
+    },
+    D = {
+      "<cmd>BufferLineSortByDirectory<cr>",
+      "Sort by directory",
+    },
+    L = {
+      "<cmd>BufferLineSortByExtension<cr>",
+      "Sort by language",
+    },
+    p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
+    P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
   },
   G = {
     name = "+Git",
@@ -103,7 +90,9 @@ return {
     L = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics (Trouble)" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
     t = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-    h = { "<cmd>lua require('config.utils').toggle_inlay_hints()<CR>", "Toggle Inlay Hints" },
+
+    h = { "<cmd>lua vim.lsp.inlay_hint(0, true)<cr>", "Enable Inlay Hints" },
+    H = { "<cmd>lua vim.lsp.inlay_hint(0, false)<cr>", "Disable Inlay Hints" },
 
     -- j = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Previous Diagnostic" },
     -- k = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
@@ -111,7 +100,7 @@ return {
   },
   s = {
     name = "+Search",
-    f = { "<cmd>Telescope find_files<cr>", "Find File (CWD)" },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
@@ -129,7 +118,6 @@ return {
     z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
     e = { "<cmd>Telescope frecency<cr>", "Frecency" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    p = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
     d = {
       name = "+DAP",
       c = { "<cmd>Telescope dap commands<cr>", "Dap Commands" },
@@ -173,5 +161,5 @@ return {
     h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm direction=vertical size=100 <cr>", "Vertical" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-  },
+  }
 }
