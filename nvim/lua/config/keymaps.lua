@@ -57,22 +57,14 @@ map("n", "<CR>", "ciw", opts)
 map("n", "<BS>", 'ci', opts)
 
 -- map ; to resume last search
--- map("n", ";", "<cmd>Telescope resume<cr>", opts)
+map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_dropdown({}))<cr>", opts)
 
--- search current buffer
-map("n", "<C-s>", ":Telescope current_buffer_fuzzy_find<CR>", opts)
+vim.keymap.set('n', '<C-s>', function()
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = 'Fuzzily search in current buffer' })
 
 -- Split line with X
 map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent = true })
-
--- Select all
-map('n', '<C-a>', 'ggVG', opts)
-
--- write file in current directory
--- :w %:h/<new-file-name>
-map('n', '<C-n>', ':w %:h/', opts)
-
--- delete forward
--- w{number}dw
--- delete backward
--- w{number}db
