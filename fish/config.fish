@@ -1,5 +1,3 @@
-# Requires https://github.com/caarlos0/timer to be installed. spd-say should ship with your distro
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -29,6 +27,17 @@ alias nvim '/usr/bin/neovim'
 alias vim '/usr/bin/neovim'
 set -x PATH /usr/bin $PATH
 set -x PATH ~/.bun/bin $PATH
-set -x PATH ~/.nvm $PATH
 set -x PATH /usr/local/bin $PATH
 
+
+
+set ZVM_INSTALL $HOME/.zvm/self
+set -x PATH $PATH $HOME/.zvm/bin
+set -x PATH $PATH $ZVM_INSTALL
+
+# pnpm
+set -gx PNPM_HOME "/home/yazaldefilimone/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
