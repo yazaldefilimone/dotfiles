@@ -7,7 +7,7 @@ return {
         mode = 'auto'
       },
       border = {
-        enable = true,
+        enable = false,
         top_char = "─",
         bottom_char = "─",
       }
