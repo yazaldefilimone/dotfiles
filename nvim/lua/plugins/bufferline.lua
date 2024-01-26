@@ -1,7 +1,6 @@
 local colors = require("config.colors").colors
 return {
   "akinsho/bufferline.nvim",
-  enabled = false,
   event = "VeryLazy",
   version = "*",
   dependencies = "nvim-tree/nvim-web-devicons",
