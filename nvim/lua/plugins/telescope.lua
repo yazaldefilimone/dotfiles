@@ -13,27 +13,12 @@ return {
       'telescope-dap.nvim',
       'kkharji/sqlite.lua',
       'nvim-telescope/telescope-frecency.nvim',
-      -- {
-      --   "nvim-telescope/telescope-file-browser.nvim",
-      --   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-      -- }
     },
     config = function()
       local telescope = require('telescope')
-      local actions = require('telescope.actions')
-      local trouble = require("trouble.providers.telescope")
-
       telescope.setup {
         file_ignore_patterns = { "%.git/." },
         defaults = {
-          mappings = {
-            i = {
-              ["<esc>"] = actions.close,
-              ["<C-t>"] = trouble.open_with_trouble,
-            },
-
-            n = { ["<C-t>"] = trouble.open_with_trouble },
-          },
           previewer = false,
           -- hidden = true,
           prompt_prefix = "   ",
@@ -51,34 +36,17 @@ return {
         },
         pickers = {
           find_files = {
-            -- theme = "dropdown",
-            previewer = true,
+            theme = "dropdown",
+            previewer = false,
             layout_config = {
-              -- width = 0.5,
-              height = 0.8,
+              width = 0.5,
+              height = 0.4,
               prompt_position = "top",
               preview_cutoff = 120,
             },
           },
           git_files = {
-            previewer = true,
-            layout_config = {
-              height = 0.8,
-              prompt_position = "top",
-              preview_cutoff = 120,
-            },
-          },
-          buffers = {
-            mappings = {
-              i = {
-                ["<c-d>"] = actions.delete_buffer,
-              },
-              n = {
-                ["<c-d>"] = actions.delete_buffer,
-              },
-            },
             previewer = false,
-            initial_mode = "insert",
             theme = "dropdown",
             layout_config = {
               width = 0.5,
@@ -87,12 +55,12 @@ return {
               preview_cutoff = 120,
             },
           },
-          current_buffer_fuzzy_find = {
-            previewer = true,
-            -- theme = "dropdown",
+          buffers = {
+            previewer = false,
+            theme = "dropdown",
             layout_config = {
-              -- width = 0.5,
-              height = 0.8,
+              width = 0.5,
+              height = 0.4,
               prompt_position = "top",
               preview_cutoff = 120,
             },
@@ -174,21 +142,7 @@ return {
               "*/tmp/*",
               "*/lua-language-server/*",
             },
-          },
-          -- file_browser = {
-          --   -- theme = "",
-          --   previewer = true,
-          --   -- disables netrw and use telescope-file-browser in its place
-          --   hijack_netrw = true,
-          --   -- mappings = {
-          --   --   ["i"] = {
-          --   --     -- your custom insert mode mappings
-          --   --   },
-          --   --   ["n"] = {
-          --   --     -- your custom normal mode mappings
-          --   --   },
-          --   -- },
-          -- },
+          }
         }
       }
       telescope.load_extension('fzf')
@@ -197,7 +151,6 @@ return {
       telescope.load_extension('dap')
       telescope.load_extension("zoxide")
       telescope.load_extension("frecency")
-      -- telescope.load_extension("file_browser")
     end
   },
 }
