@@ -1,3 +1,3 @@
-: Neovim configuration
+# Neovim configuration
 
 Always a WIP.
