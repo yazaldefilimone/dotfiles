@@ -1,10 +1,4 @@
 local api = vim.api
-
-local colors = {
-  fg = "#76787d",
-  bg = "#252829",
-}
-
 -- don't auto comment new line
 api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
@@ -15,25 +9,6 @@ api.nvim_create_autocmd("BufWritePre", {
   group = TrimWhiteSpaceGrp,
 })
 
--- wrap words "softly" (no carriage return) in mail buffer
-api.nvim_create_autocmd("Filetype", {
-  pattern = "mail",
-  callback = function()
-    vim.opt.textwidth = 0
-    vim.opt.wrapmargin = 0
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.opt.columns = 80
-    vim.opt.colorcolumn = "80"
-  end,
-})
-
--- Highlight on yank
-api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
 
 -- go to last loc when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {
@@ -68,63 +43,11 @@ api.nvim_create_autocmd(
     pattern = { "*.txt", "*.md", "*.tex" },
     callback = function()
       vim.opt.spell = true
-      vim.opt.spelllang = "en,de"
+      vim.opt.spelllang = "en,de,pt"
     end,
   }
 )
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(ev)
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', '<leader>v', "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
-  end,
-})
-
--- change the background color of floating windows and borders.
-vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = function()
-    vim.cmd('highlight NormalFloat guibg=none guifg=none')
-    vim.cmd('highlight FloatBorder guifg=' .. colors.fg .. ' guibg=none')
-    vim.cmd('highlight NormalNC guibg=none guifg=none')
-  end,
-})
-
--- change neotree background colors
--- Default: NeoTreeNormal  xxx ctermfg=223 ctermbg=232 guifg=#d4be98 guibg=#141617
-vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = function()
-    vim.cmd('highlight NeoTreeNormal guibg=#1d2021')
-    vim.cmd('highlight NeoTreeFloatNormal guifg=#1d2021 guibg=#141617')
-    vim.cmd('highlight NeoTreeFloatBorder guifg=#958272 guibg=#1d2021')
-    vim.cmd('highlight NeoTreeEndOfBuffer guibg=#1d2021') -- 1d2021
-  end,
-})
-
--- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
-  pattern = {
-    "PlenaryTestPopup",
-    "help",
-    "lspinfo",
-    "man",
-    "notify",
-    "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "neotest-output",
-    "checkhealth",
-    "neotest-summary",
-    "neotest-output-panel",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
-})
 
 -- resize neovim split when terminal is resized
 vim.api.nvim_command('autocmd VimResized * wincmd =')
