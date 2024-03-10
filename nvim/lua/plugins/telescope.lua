@@ -10,9 +10,10 @@ return {
       'nvim-tree/nvim-web-devicons',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
       'nvim-telescope/telescope-ui-select.nvim',
-      'telescope-dap.nvim',
+      -- 'telescope-dap.nvim',
       'kkharji/sqlite.lua',
       'nvim-telescope/telescope-frecency.nvim',
+      "mfussenegger/nvim-dap",
     },
     config = function()
       local telescope = require('telescope')
@@ -147,8 +148,8 @@ return {
       }
       telescope.load_extension('fzf')
       telescope.load_extension('ui-select')
-      telescope.load_extension('refactoring')
-      telescope.load_extension('dap')
+      -- telescope.load_extension('refactoring')
+      -- telescope.load_extension('dap')
       telescope.load_extension("zoxide")
       telescope.load_extension("frecency")
     end
