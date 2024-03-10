@@ -1,7 +1,7 @@
 return {
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'v3.x',
     lazy = true,
     config = function()
       -- This is where you modify the settings for lsp-zero
@@ -31,7 +31,6 @@ return {
       -- And you can configure cmp even more, if you want to.
       local cmp         = require('cmp')
       local lspkind     = require('lspkind')
-      local icons       = require('config.icons')
       local cmp_action  = require('lsp-zero.cmp').action()
       local cmp_mapping = cmp.mapping
       local cmp_types   = require('cmp.types.cmp')
@@ -43,22 +42,19 @@ return {
           format = function(entry, vim_item)
             local max_width = 0
             if max_width ~= 0 and #vim_item.abbr > max_width then
-              vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
+              vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1)
             end
             vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
 
             if entry.source.name == "copilot" then
-              vim_item.kind = icons.git.Octoface
               vim_item.kind_hl_group = "CmpItemKindCopilot"
             end
 
             if entry.source.name == "crates" then
-              vim_item.kind = icons.misc.Package
               vim_item.kind_hl_group = "CmpItemKindCrate"
             end
 
             if entry.source.name == "emoji" then
-              vim_item.kind = icons.misc.Smiley
               vim_item.kind_hl_group = "CmpItemKindEmoji"
             end
             vim_item.menu = ({
@@ -282,7 +278,6 @@ return {
           ['gopls'] = { 'go' },
           -- if you have a working setup with null-ls
           -- you can specify filetypes it can format.
-          -- ['null-ls'] = {'javascript', 'typescript'},
         }
       })
 
