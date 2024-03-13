@@ -1,0 +1,19 @@
+#!/usr/bin/env fish
+
+# Solicitar mensagem de commit
+read -p "Digite a mensagem do commit: " commit_message
+
+# Solicitar referência do commit
+read -p "Digite a referência do commit: " commit_reference
+
+# Obtém a lista de arquivos modificados
+set modified_files (git status --porcelain | awk '{print $2}')
+
+# Itera sobre cada arquivo modificado
+for file in $modified_files
+    # Adiciona o arquivo ao staging area
+    git add $file
+    # Faz o commit do arquivo com a mensagem desejada e referência do commit
+    git commit -m "$commit_message, $commit_reference"
+end
+
