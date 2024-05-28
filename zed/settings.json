@@ -1,0 +1,33 @@
+// Zed settings https://zed.dev/docs/configuring-zed
+{
+  "theme": "Evil Rabbit (Dark)",
+  "ui_font_size": 15,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Monaspace Radon",
+  "ui_font_family": "Monaspace Radon",
+  "autosave": "on_focus_change",
+  "format_on_save": "off",
+  "preferred_line_length": 120,
+  "vim_mode":  false,
+  "tab_size": 2,
+  "terminal": {
+    "alternate_scroll": "off",
+    "copy_on_select": false,
+    "env": {},
+    "blinking": "off",
+    "font_size": 15,
+    "option_as_meta": false,
+    "font_family": "Monaspace Radon",
+    // "shell": {},
+    "toolbar": {
+      "title": true
+    }
+  },
+  "languages": {
+    "C": {
+      "format_on_save": "language_server",
+      "preferred_line_length": 120,
+      "soft_wrap": "preferred_line_length"
+    }
+  }
+}
