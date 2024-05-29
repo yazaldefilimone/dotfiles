@@ -1,15 +1,20 @@
 // Zed settings https://zed.dev/docs/configuring-zed
 {
   "theme": "Evil Rabbit (Dark)",
+  "features": {
+    "inline_completion_provider": "supermaven"
+  },
   "ui_font_size": 15,
   "buffer_font_size": 16,
   "buffer_font_family": "Monaspace Radon",
   "ui_font_family": "Monaspace Radon",
   "autosave": "on_focus_change",
-  "format_on_save": "off",
-  "preferred_line_length": 120,
-  "vim_mode":  false,
+  "format_on_save": "on",
+  "preferred_line_length": 150,
+  "vim_mode": false,
   "tab_size": 2,
+  "use_autoclose": true,
+  "hour_format": "hour12", // or hour24
   "terminal": {
     "alternate_scroll": "off",
     "copy_on_select": false,
@@ -23,11 +28,32 @@
       "title": true
     }
   },
+  "JSON": {
+    "tab_size": 2
+  },
   "languages": {
     "C": {
       "format_on_save": "language_server",
-      "preferred_line_length": 120,
-      "soft_wrap": "preferred_line_length"
+      "preferred_line_length": 150
+      // "soft_wrap": "preferred_line_length"
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.fixAll.eslint": true
+      }
     }
   }
 }
