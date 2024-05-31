@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CURRENT_DIR=$(pwd)
+ZEDCONF=~/.config/zed/settings.json
+DOTFILES=~/www/learnspace/dotfiles/zed
+
+if [ ! -f $ZEDCONF ]; then
+    echo "No zed config file found, creating one..."
+    mkdir -p $(dirname $ZEDCONF)
+    touch $ZEDCONF
+fi
+
+if [ ! -d $DOTFILES ]; then
+    echo "No dotfiles found, creating one..."
+    mkdir -p $DOTFILES
+fi
+
+echo "Syncing Local Zed Config to Remote..."
+# copy settings.json to dotfiles
+cp $ZEDCONF $DOTFILES/settings.json
+
+cd $DOTFILES
+
+git add settings.json
+git commit -m "auto: sync zed config"
+git push
+
+echo "Done!"
+
+cd $CURRENT_DIR
