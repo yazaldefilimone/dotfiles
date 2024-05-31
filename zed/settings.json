@@ -6,10 +6,9 @@
   },
   "ui_font_size": 15,
   "buffer_font_size": 16,
-  "buffer_font_family": "Monaspace Radon",
-  "ui_font_family": "Monaspace Radon",
-  "autosave": "on_focus_change",
-  "format_on_save": "on",
+  "buffer_font_family": "Cartograph CF",
+  "ui_font_family": "Cartograph CF",
+  // "format_on_save": "on",
   "preferred_line_length": 150,
   "vim_mode": false,
   "tab_size": 2,
@@ -22,7 +21,7 @@
     "blinking": "off",
     "font_size": 15,
     "option_as_meta": false,
-    "font_family": "Monaspace Radon",
+    "font_family": "Cartograph CF",
     // "shell": {},
     "toolbar": {
       "title": true
@@ -36,6 +35,15 @@
       "format_on_save": "language_server",
       "preferred_line_length": 150
       // "soft_wrap": "preferred_line_length"
+    },
+    "C++": {
+      "format_on_save": "language_server",
+      "formatter": {
+        "external": {
+          "command": "clang-format",
+          "arguments": []
+        }
+      }
     },
     "TypeScript": {
       "code_actions_on_format": {
