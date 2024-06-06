@@ -1,6 +1,6 @@
 // Zed settings https://zed.dev/docs/configuring-zed
 {
-  "theme": "Evil Rabbit (Dark)",
+  "theme": "Evil Rabbit (Dark)",cd
   "features": {
     "inline_completion_provider": "supermaven"
   },
